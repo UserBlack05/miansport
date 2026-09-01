@@ -1,0 +1,11 @@
+:root{--red:#c81d25;--ink:#14100e;--paper:#faf8f5;--line:#e4dfd6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px Inter,sans-serif}
+header,main,footer,
+.categories{padding-left:max(24px,calc((100% - 1120px)/2));padding-right:max(24px,calc((100% - 1120px)/2))}header{display:flex;align-items:center;gap:34px;padding-top:20px;padding-bottom:20px;border-bottom:3px solid var(--ink);background:#fff}.brand,footer strong,h1,h2{font-family:Anton,sans-serif;letter-spacing:.5px;text-transform:uppercase}.brand{font-size:28px;color:var(--ink);text-decoration:none}.brand span,footer span,
+.kicker{color:var(--red)}nav{display:flex;gap:20px;flex:1}nav a,
+.categories a{text-decoration:none;font-weight:800;text-transform:uppercase;font-size:12px}
+.categories{display:flex;gap:14px;padding-top:13px;padding-bottom:13px;overflow:auto;border-bottom:1px solid var(--line)}
+.categories a{white-space:nowrap}main{min-height:65vh}.hero{margin:0 calc(-1 * max(24px,calc((100% - 1120px)/2)));padding:80px max(24px,calc((100% - 1120px)/2));background:linear-gradient(120deg,#14100e,#4b4844);color:#fff}
+.hero>div{max-width:700px}h1{font-size:44px;line-height:1.05}h2{font-size:30px}section{padding:56px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:28px}.card{background:#fff;border:1px solid var(--line);padding:24px;min-height:190px}.card h3{font-size:20px;margin:9px 0}.card h3 a{text-decoration:none}.kicker{text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:.8px}.button{display:inline-block;background:var(--red);color:#fff;padding:12px 18px;text-decoration:none;font-weight:800;margin-top:15px}.story{max-width:780px;margin:60px auto}.story .lead{font-size:21px;line-height:1.5}.story div{margin-top:35px;line-height:1.8}footer{padding-top:48px;padding-bottom:26px;background:var(--ink);color:#b8b2a8}footer strong{color:#fff;font-size:24px}@media(max-width:720px){header{flex-wrap:wrap}nav{order:3;flex-basis:100%}.grid{grid-template-columns:1fr}h1{font-size:36px}}
