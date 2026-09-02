@@ -1,13 +1,114 @@
-{{-- resources/views/categories/show.blade.php --}}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $category->nom }} - MianSport</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
+@extends('layouts.app')
+
+@section('title', 'MianSport — Accueil')
+
+@section('content')
+    
+    <div class="category-hero">
+        <h1 class="display">SPORT & BUISNESS</h1>
+        <p>{{ $category->description ?? "L'économie du sport, les investissements, les mutations des clubs, les droits médias et les carrières." }}</p>
+    </div>
+
+    {{-- Main content --}}
+    <main class="container">
+
+        {{-- Featured article + sidebar --}}
+        @if($mainArticle)
+            <div class="featured-row">
+                <div class="featured-card">
+                    <div class="featured-thumb">
+                        @if($mainArticle->image)
+                            <img src="{{ $mainArticle->image }}" alt="{{ $mainArticle->titre }}">
+                        @else
+                            <span class="fallback-text">Image à la une — [emplacement photo article]</span>
+                        @endif
+                    </div>
+                    <div class="featured-body">
+                        <span class="tag-categories">
+                            @forelse($mainArticle->categories as $cat)
+                                {{ strtoupper($cat->nom) }}
+                                @if(!$loop->last) • @endif
+                            @empty
+                                CATÉGORIES
+                            @endforelse
+                        </span>
+                        <h2 class="display">
+                            <a href="{{ route('articles.show', $mainArticle->slug) }}">
+                                {{ $mainArticle->titre }}
+                            </a>
+                        </h2>
+                        <p>{{ Str::limit($mainArticle->description ?? $mainArticle->excerpt, 160) }}</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-list">
+                    @forelse($feedItems as $sidebar)
+                        <div class="side-card">
+                            <span class="tag-categories">
+                                @forelse($sidebar->categories as $cat)
+                                    {{ strtoupper($cat->nom) }}
+                                    @if(!$loop->last) • @endif
+                                @empty
+                                    CATÉGORIES
+                                @endforelse
+                            </span>
+                            <h3 class="display">
+                                <a href="{{ route('articles.show', $sidebar->slug) }}">
+                                    {{ Str::limit($sidebar->titre, 70) }}
+                                </a>
+                            </h3>
+                        </div>
+                    @empty
+                        <div class="side-card">
+                            <span class="tag-categories">CATÉGORIES</span>
+                            <h3 class="display">Aucun article récent dans cette catégorie</h3>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+        @endif
+
+        {{-- All news --}}
+        <div class="all-news-head">
+            <h2 class="display">Toute l'actualité - SPORT & BUISNESS</h2>
+        </div>
+
+        @if($gridItems->isNotEmpty())
+            <div class="news-grid">
+                @foreach($gridItems as $article)
+                    <article class="news-card">
+                        <div class="card-thumb">
+                            @if($article->image)
+                                <img src="{{ $article->image }}" alt="{{ $article->titre }}">
+                            @else
+                                <span class="fallback-text">Vignette article</span>
+                            @endif
+                        </div>
+                        <a href="{{ route('articles.show', $article->slug) }}" class="title">
+                            {{ Str::limit($article->titre, 100) }}
+                        </a>
+                    </article>
+                @endforeach
+            </div>
+
+            {{-- Pagination --}}
+            <div class="pagination">
+                {{ $articles->links() }}
+            </div>
+        @else
+            <div class="empty-state">
+                <div class="icon">📝</div>
+                <h3>Aucun article trouvé</h3>
+                <p>Il n'y a pas encore d'articles dans cette catégorie.</p>
+            </div>
+        @endif
+
+    </main>
+
+@endsection
+
+@push('page-styles')
+ <style>
         :root {
             --red: #E4032E;
             --black: #0D0D0D;
@@ -419,152 +520,3 @@
             }
         }
     </style>
-</head>
-<body>
-
-    {{-- Top bar --}}
-    <header class="topbar">
-        <button class="icon-btn" aria-label="Menu" onclick="document.getElementById('overlay').classList.add('open');document.getElementById('drawer').classList.add('open');">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="2">
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <line x1="3" y1="12" x2="21" y2="12"/>
-                <line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
-        </button>
-        <div class="logo">Mian<span>Sports</span></div>
-        <div class="topbar-right">
-            <div class="avatar-circle"></div>
-            <button class="subscribe-btn">S'ABONNER</button>
-        </div>
-    </header>
-
-    {{-- Ticker --}}
-    <div class="ticker">
-        <div class="ticker-label">EN CONTINU</div>
-        <div class="ticker-body">
-            @if(isset($latestNews) && $latestNews->isNotEmpty())
-                {{ $latestNews->first()->titre }}
-            @else
-                Zone réservée aux dernières actualités défilantes
-            @endif
-        </div>
-    </div>
-
-    {{-- Primary nav --}}
-    <nav class="primary-nav">
-        <a href="{{ route('home') }}">ACCUEIL</a>
-        <a href="{{ route('articles.index') }}">ACTUALITÉS</a>
-        <a href="{{ route('categories.show', 'football') }}">FOOTBALL</a>
-        <a href="{{ route('categories.show', 'basketball') }}">BASKETBALL</a>
-        <a href="{{ route('categories.index') }}">TOUS LES SPORTS</a>
-        <a href="{{ route('competitions.index') }}">COMPÉTITIONS</a>
-        <a href="{{ route('univers.index') }}">UNIVERS</a>
-        <a href="{{ route('videos.index') }}">VIDÉO</a>
-        <a href="{{ route('magazines.index') }}">MAGAZINE</a>
-        <a href="{{ route('categories.show', 'sport-business') }}" class="active">SPORT &amp; BUSINESS</a>
-    </nav>
-
-    {{-- Category hero band --}}
-    <div class="category-hero">
-        <h1 class="display">{{ $category->nom }}</h1>
-        <p>{{ $category->description ?? "L'économie du sport, les investissements, les mutations des clubs, les droits médias et les carrières." }}</p>
-    </div>
-
-    {{-- Main content --}}
-    <main class="container">
-
-        {{-- Featured article + sidebar --}}
-        @if($featuredArticle)
-            <div class="featured-row">
-                <div class="featured-card">
-                    <div class="featured-thumb">
-                        @if($featuredArticle->image)
-                            <img src="{{ $featuredArticle->image }}" alt="{{ $featuredArticle->titre }}">
-                        @else
-                            <span class="fallback-text">Image à la une — [emplacement photo article]</span>
-                        @endif
-                    </div>
-                    <div class="featured-body">
-                        <span class="tag-categories">
-                            @forelse($featuredArticle->categories as $cat)
-                                {{ strtoupper($cat->nom) }}
-                                @if(!$loop->last) • @endif
-                            @empty
-                                CATÉGORIES
-                            @endforelse
-                        </span>
-                        <h2 class="display">
-                            <a href="{{ route('articles.show', $featuredArticle->slug) }}">
-                                {{ $featuredArticle->titre }}
-                            </a>
-                        </h2>
-                        <p>{{ Str::limit($featuredArticle->description ?? $featuredArticle->excerpt, 160) }}</p>
-                    </div>
-                </div>
-
-                <div class="sidebar-list">
-                    @forelse($sidebarArticles as $sidebar)
-                        <div class="side-card">
-                            <span class="tag-categories">
-                                @forelse($sidebar->categories as $cat)
-                                    {{ strtoupper($cat->nom) }}
-                                    @if(!$loop->last) • @endif
-                                @empty
-                                    CATÉGORIES
-                                @endforelse
-                            </span>
-                            <h3 class="display">
-                                <a href="{{ route('articles.show', $sidebar->slug) }}">
-                                    {{ Str::limit($sidebar->titre, 70) }}
-                                </a>
-                            </h3>
-                        </div>
-                    @empty
-                        <div class="side-card">
-                            <span class="tag-categories">CATÉGORIES</span>
-                            <h3 class="display">Aucun article récent dans cette catégorie</h3>
-                        </div>
-                    @endforelse
-                </div>
-            </div>
-        @endif
-
-        {{-- All news --}}
-        <div class="all-news-head">
-            <h2 class="display">Toute l'actualité - {{ $category->nom }}</h2>
-        </div>
-
-        @if($articles->isNotEmpty())
-            <div class="news-grid">
-                @foreach($articles as $article)
-                    <article class="news-card">
-                        <div class="card-thumb">
-                            @if($article->image)
-                                <img src="{{ $article->image }}" alt="{{ $article->titre }}">
-                            @else
-                                <span class="fallback-text">Vignette article</span>
-                            @endif
-                        </div>
-                        <a href="{{ route('articles.show', $article->slug) }}" class="title">
-                            {{ Str::limit($article->titre, 100) }}
-                        </a>
-                    </article>
-                @endforeach
-            </div>
-
-            {{-- Pagination --}}
-            <div class="pagination">
-                {{ $articles->links() }}
-            </div>
-        @else
-            <div class="empty-state">
-                <div class="icon">📝</div>
-                <h3>Aucun article trouvé</h3>
-                <p>Il n'y a pas encore d'articles dans cette catégorie.</p>
-            </div>
-        @endif
-
-    </main>
-
-</body>
-</html>

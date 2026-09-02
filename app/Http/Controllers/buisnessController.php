@@ -7,13 +7,13 @@ use App\Models\Article;
 use App\Models\Category;
 
 
-class BasketballController extends Controller
+class BuisnessController extends Controller
 
 {
     public function index()
     {
         // Données pour l'article principal
-       $category = Category::with('articles')->find(4);
+       $category = Category::with('articles')->find(17);
        $article = $category->articles;
        $mainArticle = $article->sortByDesc('datedecreation')
        ->first();
@@ -70,7 +70,7 @@ class BasketballController extends Controller
         // Fil d'actualité complet (grid)
         
 
-        return view('pages.sports.basket', compact(
+        return view('pages.buisness', compact(
             'mainArticle',
             'feedItems',
             'gridItems',

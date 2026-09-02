@@ -30,7 +30,7 @@
             <div class="fdl-head">Fil d'actualité — AUTRE SPORT COLLECTIFS</div>
             <div class="fdl">
                 @foreach($feedItems as $item)
-                <a class="fdl-item" href="{{route('articles.show',$mainArticle['slug'])}}">
+                <a class="fdl-item" href="{{route('articles.show',$item['slug'])}}">
                     <div class="cov-wrap">
                         <img src="{{ asset($item['image'] ?? '') }}" alt="{{ $item['imgage'] }}">
                     </div>

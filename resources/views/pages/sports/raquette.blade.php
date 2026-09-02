@@ -20,15 +20,17 @@
                 @foreach($mainArticle->categories as $category)
                         <span class="fdl-cat"> {{ $category->nom }} </span>
                         @endforeach
+            <a href="{{route('articles.show',$mainArticle['slug'])}}">
                 <h2 style="font-weight:800;font-size:26px;margin:8px 0 12px;line-height:1.2;">{{ $mainArticle['titre'] }}</h2>
                 <p style="color:var(--ardoise);font-size:14.5px;line-height:1.7;">{{ $mainArticle['description'] }}</p>
+            </a>
             </div>
         </div>
         <div class="au-list" style="padding-left:36px;border-left:1px solid var(--ligne);">
             <div class="fdl-head">Fil d'actualité — SPORTS DE RAQUETTE</div>
             <div class="fdl">
                 @foreach($feedItems as $item)
-                <a class="fdl-item" href="#">
+                <a class="fdl-item" href="{{route('articles.show',$item['slug'])}}">
                     <div class="cov-wrap">
                         <img src="{{ asset($item['image'] ?? '') }}" alt="{{ $item['imgage'] }}">
                     </div>

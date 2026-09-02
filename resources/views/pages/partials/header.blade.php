@@ -177,7 +177,7 @@
     <div class="wrap mainnav-row">
         <a href="{{ route('home') }}" class="mn {{ request()->routeIs('home') ? 'active' : '' }}">Accueil</a>
         
-        <div class="mn-dropdown">
+        <!--<div class="mn-dropdown">
             <a href="{{ route('actu') }}" class="mn {{ request()->routeIs('actu*') ? 'active' : '' }}">Actualités</a>
             <div class="mn-panel">
                 <div class="mn-panel-title">Actualités</div>
@@ -187,7 +187,7 @@
                     <a href="{{ route('actu', ['section' => 'Dossiers']) }}">Dossiers, analyses et enquêtes</a>
                 </div>
             </div>
-        </div>
+        </div>-->
         
         <div class="mn-dropdown">
             <a href="{{ route('football') }}" class="mn {{ request()->routeIs('football*') ? 'active' : '' }}">Football</a>
@@ -232,15 +232,11 @@
             </div>
         </div>
         <div class="mn-dropdown dropdown-align-right">
-            <a href="{{ route('business') }}" class="mn {{ request()->routeIs('business*') ? 'active' : '' }}">Sport & Business</a>
+            <a href="{{ route('buisness') }}" class="mn {{ request()->routeIs('business*') ? 'active' : '' }}">Sport & Business</a>
         </div>
         
         <div class="mn-dropdown dropdown-align-right">
             <a href="{{ route('competitions') }}" class="mn {{ request()->routeIs('competitions*') ? 'active' : '' }}">Compétitions</a>
-        </div>
-        
-       <div class="mn-dropdown dropdown-align-right">
-            <a href="{{ route('business') }}" class="mn {{ request()->routeIs('business*') ? 'active' : '' }}">Sport & Business</a>
         </div>
         
         <a href="{{ route('videos') }}" class="mn {{ request()->routeIs('videos*') ? 'active' : '' }}">Vidéo</a>

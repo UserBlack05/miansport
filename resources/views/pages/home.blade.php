@@ -42,7 +42,7 @@
         <div class="ms-wrap">
             <div class="home-rubric-head">
                 <h2>À LA UNE</h2>
-                <a href="{{ route('actu') }}">Voir tout </a>
+               <!-- <a href="{{ route('actu') }}">Voir tout </a>-->
             </div>
             
             <div class="lead">
@@ -580,7 +580,7 @@
         <div class="wrap">
             <div class="home-rubric-head">
                 <h2>SPORT &amp; BUSINESS</h2>
-                <a href="{{ route('business') }}">Voir tout </a>
+                <a href="{{ route('buisness') }}">Voir tout </a>
             </div>
             <div class="business-grid">
                 

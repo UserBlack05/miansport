@@ -6,6 +6,7 @@ use App\Http\Controllers\AutresSportsCollectifsController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ActuController;   
 use App\Http\Controllers\BasketballController; 
+use App\Http\Controllers\BuisnessController; 
 use App\Http\Controllers\FootballController;  
 use App\Http\Controllers\ApiController;  
 use App\Http\Controllers\athlethisteController;  
@@ -13,8 +14,6 @@ use App\Http\Controllers\combatController;
 use App\Http\Controllers\raquetteController;
 use App\Http\Controllers\Api\WordPressImportController;
 use App\Http\Controllers\ArticleController;
-
- 
 use Illuminate\Support\Facades\Route;
 
 // Home
