@@ -95,6 +95,9 @@
         .mn-panel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:0;}
         .mn-panel-grid a{display:block;color:var(--encre);text-decoration:none;font-size:13px;font-weight:600;line-height:1.35;padding:8px 0;border-bottom:1px solid var(--ligne);}
         .mn-panel-grid a:hover{color:var(--rouge);padding-left:4px;}
+
+        /* style pour les liens  */
+        .lien{text-decoration:none;text-decoration-line: none;}
         
         /* Ticker */
         .ticker{background:var(--rouge);display:flex;align-items:stretch;overflow:hidden;}

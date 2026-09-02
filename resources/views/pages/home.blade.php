@@ -670,7 +670,7 @@
     
     .ms-competitions .comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.ms-competitions .comp-card{background:#fff;box-shadow:0 10px 28px rgba(0,0,0,.16);border-bottom:4px solid #a9d6ea;overflow:hidden}.ms-competitions .comp-card img{width:100%;height:290px;object-fit:cover}.ms-competitions .comp-body{padding:20px 20px 26px;min-height:170px;position:relative}.ms-competitions .comp-body::after{content:'🏆';position:absolute;right:12px;bottom:8px;font-size:68px;opacity:.13}.ms-competitions .comp-body h3{color:var(--rouge);font-size:29px;margin:0 0 14px}.ms-competitions .comp-body p{font-size:16px;line-height:1.45;margin:0}
     
-    .r-combat{background:#120d0d;color:#fff}.r-combat .rubric-head{border-color:#4c2828}.combat-grid{display:flex;grid-template-columns:1fr 1fr;gap:20px}.combat-card{min-height:250px;border:1px solid #5b2b2b;background:radial-gradient(circle at 80% 15%,#9a2727,transparent 35%),#211313;padding:28px;display:flex;flex-direction:column;justify-content:flex-end}.combat-card:nth-child(2){background:radial-gradient(circle at 20% 15%,#b8862f,transparent 35%),#1c1610}
+    .r-combat{background:#120d0d;color:#fff}.r-combat .rubric-head{border-color:#4c2828}.combat-grid{display:flex;grid-template-columns:1fr 1fr;gap:20px}.combat-card{min-height:400px;border:1px solid #5b2b2b;background:radial-gradient(circle at 80% 15%,#9a2727,transparent 35%),#211313;padding:28px;display:flex;flex-direction:column;justify-content:flex-end}.combat-card:nth-child(2){background:radial-gradient(circle at 20% 15%,#b8862f,transparent 35%),#1c1610}
     .r-combat .combat-grid{grid-template-columns:1fr}
     
     .r-business{background:var(--papier);padding:58px 0;border-bottom:1px solid var(--ligne);}
