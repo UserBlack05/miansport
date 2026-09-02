@@ -64,7 +64,7 @@
                         @foreach($article->categories as $category)
                             <span class="ms-kicker">{{  $category->nom ?? 'À la Une' }}</span>
                              @endforeach
-                            <h3 class="ms-title" style="color: #050505;">{{ $article['titre'] }}</h3>
+                            <h3 class="ms-title" style="color: #050505; font-size:18px">{{ $article['titre'] }}</h3>
                         </div>
                     </a>
                 @endforeach
@@ -677,7 +677,7 @@
     .business-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr;grid-template-rows:auto auto;gap:20px;}
     .business-card--main{grid-row:1/3;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:34px;border-radius:12px;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px;position:relative;overflow:hidden;}
     .business-card--main::after{content:"📈";position:absolute;right:20px;bottom:10px;font-size:72px;opacity:0.15;}
-    .business-card--main .ms-title{color:white;font-size:28px;margin-top:8px;}
+    .business-card--main .ms-title{color:white;font-size:px;margin-top:8px;}
     .business-card--main .business-card__excerpt{color:#b0b0c8;font-size:14px;line-height:1.6;margin-top:10px;max-width:90%;}
     .business-card{background:#fff;padding:20px 22px;border-radius:12px;border:1px solid var(--ligne);display:flex;flex-direction:column;justify-content:flex-end;transition:transform 0.2s ease,box-shadow 0.2s ease;}
     .business-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06);}

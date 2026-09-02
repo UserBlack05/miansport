@@ -32,7 +32,7 @@
                                 CATÉGORIES
                             @endforelse
                         </span>
-                        <h2 class="display">
+                        <h2 class="ecriture">
                             <a href="{{ route('articles.show', $mainArticle->slug) }}">
                                 {{ $mainArticle->titre }}
                             </a>
@@ -52,9 +52,9 @@
                                     CATÉGORIES
                                 @endforelse
                             </span>
-                            <h3 class="display">
+                            <h3 class="ecriture">
                                 <a href="{{ route('articles.show', $sidebar->slug) }}">
-                                    {{ Str::limit($sidebar->titre, 70) }}
+                                    {{ Str::limit($sidebar->titre, 80) }}
                                 </a>
                             </h3>
                         </div>
@@ -124,7 +124,6 @@
             padding: 0;
         }
         body {
-            font-family: 'Inter', sans-serif;
             color: var(--black);
             background: var(--cream);
         }
@@ -133,7 +132,12 @@
             text-decoration: none;
         }
         .display {
-            font-family: 'Anton', sans-serif;
+            
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+        .ecriture{
+            font-weight: 1000;
             text-transform: uppercase;
             letter-spacing: 0.01em;
         }
@@ -157,13 +161,13 @@
             border: none;
         }
         .logo {
-            font-family: 'Anton', sans-serif;
+          
             font-size: 32px;
             letter-spacing: 0.02em;
             color: var(--black);
         }
         .logo span {
-            font-family: 'Brush Script MT', 'Segoe Script', cursive;
+            
             color: var(--red);
             font-size: 36px;
             margin-left: 2px;
@@ -203,7 +207,7 @@
             align-items: center;
         }
         .ticker-label {
-            font-family: 'Anton', sans-serif;
+            
             font-size: 13px;
             letter-spacing: 0.05em;
             padding: 9px 22px;
@@ -252,7 +256,7 @@
             padding: 44px 40px 56px;
         }
         .category-hero h1 {
-            font-family: 'Anton', sans-serif;
+            
             font-size: 56px;
             line-height: 1;
         }
@@ -325,7 +329,7 @@
             display: block;
         }
         .featured-body h2 {
-            font-family: 'Anton', sans-serif;
+            
             font-size: 24px;
             line-height: 1.25;
             margin-bottom: 14px;
@@ -361,7 +365,7 @@
             margin-bottom: 8px;
         }
         .side-card h3 {
-            font-family: 'Anton', sans-serif;
+            
             font-size: 16px;
             line-height: 1.3;
         }
@@ -376,7 +380,7 @@
             margin-top: 20px;
         }
         .all-news-head h2 {
-            font-family: 'Anton', sans-serif;
+            
             font-size: 32px;
         }
 
@@ -466,7 +470,7 @@
             margin-bottom: 16px;
         }
         .empty-state h3 {
-            font-family: 'Anton', sans-serif;
+            
             font-size: 24px;
             margin-bottom: 12px;
         }
