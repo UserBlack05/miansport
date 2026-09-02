@@ -68,7 +68,6 @@ Route::prefix('sports')->group(function () {
 
 // Sport & Business
 Route::prefix('business')->group(function () {
-    Route::get('/', function () { return view('business.index'); })->name('business');
     Route::get('/economie', function () { return view('business.economie'); })->name('business.economie');
     Route::get('/sponsoring', function () { return view('business.sponsoring'); })->name('business.sponsoring');
     Route::get('/gouvernance', function () { return view('business.gouvernance'); })->name('business.gouvernance');
@@ -119,10 +118,9 @@ Route::prefix('videos')->group(function () {
     Route::get('/{id}', [VideoController::class, 'show'])->name('videos.show');
 });
 
-Route::prefix('actualites')->group(function () {
-    Route::get('/', [ActuController::class, 'index'])->name('actu');
-    Route::get('/{id}', [ActuController::class, 'show'])->name('actu.show');
-});
+Route::get('/actualites', [ActuController::class, 'index'])->name('actu');
+
+Route::get('/buisness', [buisnessController::class, 'index'])->name('buisness');
 
 Route::get('/sports/collectifs', [AutresSportsCollectifsController::class, 'index'])->name('sports.collectifs');
 
