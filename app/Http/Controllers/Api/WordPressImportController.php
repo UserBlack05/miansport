@@ -101,11 +101,7 @@ class WordPressImportController extends Controller
 
                 $slug = $article['slug'];
 
-                $contenu = html_entity_decode(
-                    strip_tags($article['content']['rendered'] ?? ''), 
-                    ENT_QUOTES, 
-                    'UTF-8'
-                );
+                $contenu = $article['content']['rendered'] ?? '';
                 
                 $description = html_entity_decode(
                     strip_tags($article['excerpt']['rendered'] ?? $titre), 
