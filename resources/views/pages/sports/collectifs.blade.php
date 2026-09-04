@@ -52,9 +52,9 @@
         <div class="fdl-head">Fil d'actualité complet — AUTRE SPORT COLLECTIFS</div>
         <div class="fdg-grid">
             @foreach($gridItems as $item)
-            <a class="fdg-item" href="#">
+            <a class="fdg-item" href="{{route('articles.show',$mainArticle['slug'])}}">
                 <div class="cov-wrap">
-                        <img src="{{ asset($item['image'] ?? '') }}" alt="{{ $item['imgage'] }}">
+                        <img src="{{ asset($item['image'] ?? '') }}" alt="">
                     </div>
                 <div>
                      @foreach($item->categories as $category)

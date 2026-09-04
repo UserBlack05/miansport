@@ -12,8 +12,13 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\athlethisteController;  
 use App\Http\Controllers\combatController;
 use App\Http\Controllers\raquetteController;
+use App\Http\Controllers\precisionController;
+use App\Http\Controllers\aquatiqueController;
+use App\Http\Controllers\gymnastiqueController;
+use App\Http\Controllers\CyclismeController;
 use App\Http\Controllers\Api\WordPressImportController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\portraitController;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -24,7 +29,7 @@ Route::prefix('actualites')->group(function () {
     Route::get('/', function () { return view('actu.index'); })->name('actu');
     Route::get('/analyses', function () { return view('actu.analyses'); })->name('analyses');
     Route::get('/interviews', function () { return view('actu.interviews'); })->name('interviews');
-    Route::get('/portraits', function () { return view('actu.portraits'); })->name('portraits');
+    
     Route::get('/dossiers', function () { return view('actu.dossiers'); })->name('dossiers');
 });
 
@@ -127,6 +132,14 @@ Route::get('/sports/basketball', [BasketballController::class, 'index'])->name('
 
 Route::get('/sports/Football', [FootballController::class, 'index'])->name('sports.football');
 
+Route::get('/sports/precision', [precisionController::class, 'index'])->name('sports.precision');
+
+Route::get('/sports/gymnastique', [gymnastiqueController::class, 'index'])->name('sports.gymnastique');
+
+Route::get('/sports/aquatique', [aquatiqueController::class, 'index'])->name('sports.aquatique');
+
+Route::get('/sports/cyclisme', [CyclismeController::class, 'index'])->name('sports.cyclisme');
+
 Route::get('/import/articles', [ApiController::class, 'fetchPosts']);
 
 Route::get('/sports/combat', [combatController::class, 'index'])->name('sports.combats');
@@ -137,7 +150,7 @@ Route::get('/sports/athletisme&course', [athlethisteController::class, 'index'])
 
 Route::get('/sports/raquette', [raquetteController::class, 'index'])->name('sports.raquette');
 
-Route::get('/sports/Football', [FootballController::class, 'index'])->name('sports.football');
+Route::get('/portraits', [PortraitController::class, 'index'])->name('portraits');
 
 Route::prefix('import')->group(function () {
     // Lancer l'importation

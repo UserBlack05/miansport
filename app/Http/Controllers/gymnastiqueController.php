@@ -13,7 +13,7 @@ class gymnastiqueController extends Controller
     public function index()
     {
         // Données pour l'article principal
-       $category = Category::with('articles')->find(4);
+       $category = Category::with('articles')->find(10);
        $article = $category->articles;
        $mainArticle = $article->sortByDesc('datedecreation')
        ->first();

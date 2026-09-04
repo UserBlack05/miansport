@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
+ 
 
-
-class precisionController extends Controller
+class portraitController extends Controller
 
 {
     public function index()
     {
         // Données pour l'article principal
-       $category = Category::with('articles')->find(20);
+       $category = Category::with('articles')->find(36);
        $article = $category->articles;
        $mainArticle = $article->sortByDesc('datedecreation')
        ->first();
@@ -21,21 +21,10 @@ class precisionController extends Controller
             
 
         // Fil d'actualité (sidebar)
-        $feedItems =  $article->where('id', '!=', $mainArticle->id ?? 0)
+        $feedItems =  $article
         ->sortByDesc('datedecreation')
         ->take(6);
             
-
-        // Articles en grille (2x2)
-        $autresArticles = $feedItems->pluck('id')->toArray();
-        if ($mainArticle) {
-            $autresArticles[] = $mainArticle->id;
-        }
-
-        $gridItems = $article
-            ->whereNotIn('id', $autresArticles)
-            ->sortByDesc('datedecreation');
-        // Vidéos
         $videos = [
             [
                 'title' => 'Le résumé de la journée en sports collectifs',
@@ -70,10 +59,9 @@ class precisionController extends Controller
         // Fil d'actualité complet (grid)
         
 
-        return view('pages.sports.precision', compact(
+        return view('pages.portrait', compact(
             'mainArticle',
             'feedItems',
-            'gridItems',
             'videos',
             
         ));

@@ -13,26 +13,30 @@
     <div class="au-grid">
         <div class="au-main">
             <div class="cov-wrap" style="aspect-ratio:4/3;">
-                <span class="cov-tag">Basketball</span>
-                <img src="" alt="{{ $mainArticle['alt'] }}">
+                <span class="cov-tag">GYMNASTIQUE, FORCE & DISCIPLINES ARTISTIQUES</span>
+                <img src="{{ asset($mainArticle['image'] ?? '') }}" alt="{{ $mainArticle['alt'] }}">
             </div>
             <div style="margin-top:20px;">
-                <span class="fdl-cat">Basketball</span>
-                <h2 style="font-weight:800;font-size:26px;margin:8px 0 12px;line-height:1.2;">{{ $mainArticle['title'] }}</h2>
+                <span class="fdl-cat">GYMNASTIQUE, FORCE & DISCIPLINES ARTISTIQUES</span>
+            <a class='lien' style='color:black' href="{{route('articles.show',$mainArticle['slug'])}}">
+                <h2 style="font-weight:800;font-size:26px;margin:8px 0 12px;line-height:1.2;">{{ $mainArticle['titre'] }}</h2>
                 <p style="color:var(--ardoise);font-size:14.5px;line-height:1.7;">{{ $mainArticle['description'] }}</p>
+            </a>
             </div>
         </div>
+
+
         <div class="au-list" style="padding-left:36px;border-left:1px solid var(--ligne);">
-            <div class="fdl-head">Fil d'actualité — Basketball</div>
+            <div class="fdl-head">Fil d'actualité — GYMNASTIQUE, FORCE & DISCIPLINES ARTISTIQUES</div>
             <div class="fdl">
                 @foreach($feedItems as $item)
-                <a class="fdl-item" href="#">
+                <a class="fdl-item" href="{{route('articles.show',$item['slug'])}}">
                     <div class="cov-wrap">
-                        <img src="" alt="{{ $item['alt'] }}">
+                        <img src="{{ asset($item['image'] ?? '') }}" alt="{{ $item['alt'] }}">
                     </div>
                     <div class="fdl-text">
-                        <span class="fdl-cat">Basketball</span>
-                        <h4>{{ $item['title'] }}</h4>
+                        <span class="fdl-cat">GYMNASTIQUE, FORCE & DISCIPLINES ARTISTIQUES</span>
+                        <h4>{{ $item['titre'] }}</h4>
                     </div>
                     <span class="fdl-time">{{ $item['time'] }}</span>
                 </a>
@@ -41,52 +45,20 @@
         </div>
     </div>
 
-    <!-- Grid 2x2 -->
-    <div class="rg-grid" style="padding:40px 0;border-top:1px solid var(--ligne);">
-        @foreach($gridItems as $item)
-        <a class="rg-item" href="#">
-            <div class="cov-wrap">
-                <img src="" alt="{{ $item['alt'] }}">
-            </div>
-            <div>
-                <span class="fdl-cat">Basketball</span>
-                <h4>{{ $item['title'] }}</h4>
-            </div>
-        </a>
-        @endforeach
-    </div>
 
-    <!-- Videos -->
-    <div style="padding:10px 0 44px;border-top:1px solid var(--ligne);">
-        <div class="fdl-head">Vidéos — Basketball</div>
-        <div class="vgrid">
-            @foreach($videos as $video)
-            <a class="vcard" href="{{ route('videos') }}">
-                <div class="vthumb">
-                    <span class="vcattag">Basketball</span>
-                    <img src="" alt="{{ $video['alt'] }}">
-                    <span class="vplaybtn">▶</span>
-                    <span class="vduration">{{ $video['duration'] }}</span>
-                </div>
-                <h3>{{ $video['title'] }}</h3>
-                <div class="vmeta">{{ $video['time'] }}</div>
-            </a>
-            @endforeach
-        </div>
-    </div>
 
     <!-- Full Feed Grid -->
     <div style="padding:10px 0 60px;border-top:1px solid var(--ligne);">
-        <div class="fdl-head">Fil d'actualité complet — Basketball</div>
+        <div class="fdl-head">Fil d'actualité complet — GYMNASTIQUE, FORCE & DISCIPLINES ARTISTIQUES</div>
         <div class="fdg-grid">
             @foreach($fullFeedItems as $item)
-            <a class="fdg-item" href="#">
+            <a class="fdg-item" href="{{route('articles.show',$item['slug'])}}">
                 <div class="cov-wrap">
-                    <img src="" alt="{{ $item['alt'] }}">
+                    <img src="{{ asset(item['image'] ?? '') }}" alt="{{ $item['alt'] }}">
                 </div>
                 <div>
-                    <span class="fdl-cat">Basketball</span>
-                    <h4>{{ $item['title'] }}</h4>
+                    <span class="fdl-cat">GYMNASTIQUE, FORCE & DISCIPLINES ARTISTIQUES</span>
+                    <h4>{{ $item['titre'] }}</h4>
                 </div>
             </a>
             @endforeach

@@ -103,28 +103,11 @@ class HomeController extends Controller
             ]
         ];
 
-        $portraits = [
-            [
-                'image' => '1. Arouna Ouattara.png',
-                'title' => 'Il a quitté l\'Europe pour former les jeunes à Abidjan',
-                'author' => 'JEAN-BERNARD PADARÉ'
-            ],
-            [
-                'image' => '',
-                'title' => 'Les bâtisseurs du sport ivoirien racontent leur parcours',
-                'author' => 'JEAN-BERNARD PADARÉ'
-            ],
-            [
-                'image' => '',
-                'title' => 'La nouvelle génération veut écrire son histoire',
-                'author' => 'JEAN-BERNARD PADARÉ'
-            ],
-            [
-                'image' => '',
-                'title' => 'Africa Sports : la légende qui cherche son second souffle',
-                'author' => 'JEAN-BERNARD PADARÉ'
-            ]
-        ];
+        $category = Category::with('articles')->find(36);
+       $articles = $category->articles;
+       $portraitfeedItems = $articles->sortByDesc('datedecreation')
+        ->take(4);
+
 
         $category = Category::with('children.articles')->find(20);
        $articles = $category->children
@@ -135,22 +118,20 @@ class HomeController extends Controller
         ->sortByDesc('datedecreation')
         ->take(6);
 
-        $cyclisme = [
-            'feature_kicker' => 'Cyclisme',
-            'feature_title' => 'Routes d\'Afrique : les grands défis cyclistes',
-            'items' => [
-                ['kicker' => 'Courses', 'title' => 'Le Tour d\'Afrique en approche'],
-                ['kicker' => 'Équipes', 'title' => 'Les nouvelles formations ivoiriennes'],
-                ['kicker' => 'Jeunes', 'title' => 'La relève cycliste se prépare'],
-                ['kicker' => 'Infrastructures', 'title' => 'Les vélodromes se modernisent']
-            ]
-        ];
+       $category = Category::with('children.articles')->find(7);
+       $articles = $category->articles;
+        $cyclismemainArticle = $articles->sortByDesc('datedecreation')
+       ->first();
+       $cyclismefeedItems = $articles->where('id', '!=', $cyclismemainArticle->id ?? 0)
+        ->sortByDesc('datedecreation')
+        ->take(4);
 
-        $mecaniques = [
-            ['kicker' => 'Vitesse', 'title' => 'F1, rallye et grands circuits : la course au sommet'],
-            ['kicker' => 'Auto', 'title' => 'Rallye'],
-            ['kicker' => 'Moto', 'title' => 'Grand Prix']
-        ];
+
+        $category = Category::with('children.articles')->find(21);
+       $articles = $category->children
+       ->flatMap->articles;
+       $mecaniquefeedItems = $articles->sortByDesc('datedecreation')
+        ->take(3);
 
         $univers = [
             ['kicker' => 'Société', 'title' => 'Sport féminin'],
@@ -159,25 +140,25 @@ class HomeController extends Controller
             ['kicker' => 'Culture', 'title' => 'Sports traditionnels africains']
         ];
 
-        $aquatiques = [
-            'main_title' => 'Natation, plongeon et sports nautiques : les compétitions à venir',
-            'side' => [
-                ['title' => 'La natation ivoirienne se prépare pour les Jeux', 'slug' => 'natation-jeux'],
-                ['title' => 'Le plongeon : une discipline en développement', 'slug' => 'plongeon-developpement'],
-                ['title' => 'Les sports nautiques gagnent en popularité', 'slug' => 'nautiques-popularite']
-            ]
-        ];
+         $category = Category::with('children.articles')->find(18);
+       $articles = $category->children
+       ->flatMap->articles;
+        $aquatiquemainArticle = $articles->sortByDesc('datedecreation')
+       ->first();
+       $aquatiquefeedItems = $articles->where('id', '!=', $aquatiquemainArticle->id ?? 0)
+        ->sortByDesc('datedecreation')
+        ->take(6);
 
-        $gymnastique = [
-            'feature_kicker' => 'Gymnastique',
-            'feature_title' => 'Gymnastique et disciplines artistiques : la performance en mouvement',
-            'items' => [
-                ['kicker' => 'Artistique', 'title' => 'Les compétitions nationales'],
-                ['kicker' => 'Rythmique', 'title' => 'L\'élégance en mouvement'],
-                ['kicker' => 'Acrobatique', 'title' => 'Des performances spectaculaires'],
-                ['kicker' => 'Trampoline', 'title' => 'Une discipline qui prend son envol']
-            ]
-        ];
+
+         $category = Category::with('children.articles')->find(10);
+       $articles = $category->children
+       ->flatMap->articles;
+        $gymnastiquemainArticle = $articles->sortByDesc('datedecreation')
+       ->first();
+       $gymnastiquefeedItems = $articles->where('id', '!=', $gymnastiquemainArticle->id ?? 0)
+        ->sortByDesc('datedecreation')
+        ->take(4);
+
 
         $videos = [
             [
@@ -210,29 +191,12 @@ class HomeController extends Controller
             ]
         ];
 
-        $precision = [
-            [
-                'kicker' => 'Outdoor',
-                'title' => 'Glisse, nature et sports urbains',
-                'description' => 'Skate, surf, escalade, randonnée et nouvelles pratiques.'
-            ],
-            [
-                'kicker' => 'Urban',
-                'title' => 'Skate & street'
-            ],
-            [
-                'kicker' => 'Glisse',
-                'title' => 'Surf & glisse'
-            ],
-            [
-                'kicker' => 'Outdoor',
-                'title' => 'Outdoor'
-            ],
-            [
-                'kicker' => 'Outdoor',
-                'title' => 'Outdoor'
-            ]
-        ];
+         $category = Category::with('children.articles')->find(19);
+       $articles = $category->children
+       ->flatMap->articles;
+       $precisionfeedItems = $articles->sortByDesc('datedecreation')
+        ->take(5);
+
 
         $dossiers = [
             ['kicker' => 'Dossier', 'title' => 'Les grandes mutations du sport africain'],
@@ -254,14 +218,17 @@ class HomeController extends Controller
             'uneArticles',
             'magazine',
             'competitions',
-            'portraits',
-            'cyclisme',
-            'mecaniques',
+            'portraitfeedItems',
+            'cyclismemainArticle',
+            'cyclismefeedItems',
+            'mecaniquefeedItems',
             'univers',
-            'aquatiques',
-            'gymnastique',
+            'aquatiquemainArticle',
+            'aquatiquefeedItems',
+            'gymnastiquemainArticle',
+            'gymnastiquefeedItems',
             'videos',
-            'precision',
+            'precisionfeedItems',
             'dossiers',
             'buisnessfeedItems',
             'buisnessmainArticle',

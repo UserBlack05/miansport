@@ -293,8 +293,9 @@
                             <div>
                             @foreach($item->categories as $category)  
                                 <div class="mini-tag">{{ $category->nom }}</div>
+                            @endforeach    
                                 <h4>{{ $item['titre'] }}</h4>
-                            @endforeach
+                            
                             </div>
                         </a>
                     @endforeach
@@ -332,11 +333,13 @@
                 <a href="{{ route('portraits') }}">Voir tout </a>
             </div>
             <div class="ms-portrait-grid">
-                @foreach($portraits as $portrait)
+                @foreach($portraitfeedItems ?? [] as $portrait)
                     <article class="ms-person">
                         <img alt="" src="{{ asset($portrait['image']) }}"/>
-                        <h3 style="font-size: 25px;">{{ $portrait['title'] }}</h3>
-                        <div class="name">{{ $portrait['author'] }}</div>
+                        <a class='lien' style='color:white' href="{{ route('articles.show', $portrait->slug) }}">
+                        <h3 style="font-size: 25px;">{{ $portrait['description'] }}</h3>
+                        <div class="name">{{ $portrait['titre'] }}</div>
+                        </a>
                     </article>
                 @endforeach
             </div>
@@ -355,17 +358,16 @@
                 <article class="horse-feature" style="background-image:url({{ $raquettemainArticle['image'] }}); background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;"> 
-                    <div>@foreach($raquettemainArticle->categories as $category)
+                    <div>
+                        @foreach($raquettemainArticle->categories as $category)
                         <div class="rubric-kicker" > {{ $category->nom  ?? 'Raquette' }}</div>
                         @endforeach
-
                         <h3 class="ms-title">{{ $raquettemainArticle['titre'] }}</h3>
                     </div>
                 </article>
                 </a>
                 <div class="horse-list">
                     @foreach($raquettefeedItems ?? [] as $item)
-                    
                         <article class="horse-item" style="background-image:url({{ asset($item['image'] ?? '') }}); background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;">
@@ -389,23 +391,38 @@
                 <a href="{{ route('sports.cyclisme') }}">Voir tout </a>
             </div>
             <div class="horse-layout">
-                <article class="horse-feature">
+                <a class='lien' href="{{route('articles.show',$cyclismemainArticle['slug'])}}">
+                <article class="horse-feature" style="background-image:url({{ $cyclismemainArticle['image'] }}); background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
                     <div>
-                        <div class="rubric-kicker" style="color:#e9c99e">{{ $cyclisme['feature_kicker'] ?? 'Cyclisme' }}</div>
-                        <h3 class="ms-title">{{ $cyclisme['feature_title'] }}</h3>
+                         @foreach($cyclismemainArticle->categories as $category)
+                        <div class="rubric-kicker" > {{ $category->nom  ?? 'cyclisme' }}</div>
+                        @endforeach
+                        <h3 class="ms-title">{{ $cyclismemainArticle['titre'] }}</h3>
                     </div>
                 </article>
+                </a>
                 <div class="horse-list">
-                    @foreach($cyclisme['items'] ?? [] as $item)
-                        <article class="horse-item">
-                            <div class="rubric-kicker">{{ $item['kicker'] }}</div>
-                            <h3>{{ $item['title'] }}</h3>
+                    @foreach($cyclismefeedItems ?? [] as $item)
+                    
+                        <article class="horse-item" style="background-image:url({{ $item['image'] }}); background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
+                        @foreach($item->categories as $category)
+                        <div class="rubric-kicker" > {{ $category->nom  ?? 'Raquette' }}</div>
+                        @endforeach
+                            <a class='lien' href="{{route('articles.show',$item['slug'])}}"><h3>{{ $item['titre'] }}</h3></a>
                         </article>
+                        
                     @endforeach
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Gymnastique -->
+    
 
     <!-- Sports mécaniques -->
     <section class="rubric-block r-meca">
@@ -415,13 +432,19 @@
                 <a href="{{ route('sports.mecaniques') }}">Voir tout </a>
             </div>
             <div class="meca-grid">
-                @foreach($mecaniques as $mecanique)
-                    <article class="meca-card">
+                @foreach($mecaniquefeedItems as $item)
+                <a class='lien' href="{{route('articles.show',$item['slug'])}}">
+                    <article class="meca-card" style="background-image:url({{ $item['image'] }}); background-size: cover;
+                                background-position: center;
+                                background-repeat: no-repeat;">
                         <div>
-                            <small>{{ $mecanique['kicker'] }}</small>
-                            <h3 class="ms-title">{{ $mecanique['title'] }}</h3>
+                            @foreach($item->categories as $category)
+                            <small>{{ $category->nom  ?? 'Mecanique' }}</small>
+                            @endforeach
+                            <h3 class="ms-title">{{ $item['titre'] }}</h3>
                         </div>
                     </article>
+                </a>
                 @endforeach
             </div>
         </div>
@@ -445,6 +468,43 @@
         </div>
     </section>
 
+    <section class="rubric-block r-horse">
+        <div class="wrap">
+            <div class="home-rubric-head">
+                <h2>GYMNASTIQUE, FORCE & DISCIPLINES ARTISTIQUES</h2>
+                <a href="{{ route('sports.gymnastique') }}">Voir tout </a>
+            </div>
+            <div class="horse-layout">
+                <a class='lien' href="{{route('articles.show',$gymnastiquemainArticle['slug'])}}">
+                <article class="horse-feature" style="background-image:url({{ $gymnastiquemainArticle['image'] }}); background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
+                    <div>
+                         @foreach($gymnastiquemainArticle->categories as $category)
+                        <div class="rubric-kicker" > {{ $category->nom  ?? 'cyclisme' }}</div>
+                        @endforeach
+                        <h3 class="ms-title">{{ $gymnastiquemainArticle['titre'] }}</h3>
+                    </div>
+                </article>
+                </a>
+                <div class="horse-list">
+                    @foreach($gymnastiquefeedItems ?? [] as $item)
+                    
+                    <article class="horse-item" style="background-image:url({{ $item['image'] }}); background-size: cover;
+                                background-position: center;
+                                background-repeat: no-repeat;">
+                        @foreach($item->categories as $category)
+                        <div class="rubric-kicker" > {{ $category->nom  ?? 'Gymnastique' }}</div>
+                        @endforeach
+                        <a class='lien' href="{{route('articles.show',$item['slug'])}}"><h3>{{ $item['titre'] }}</h3></a>
+                    </article>
+                    
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Sports aquatiques -->
     <section class="home-rubric">
         <div class="wrap">
@@ -453,26 +513,34 @@
                 <a href="{{ route('sports.aquatiques') }}">Voir tout </a>
             </div>
             <div class="rubric-layout">
-                <div class="rubric-main">
+                <div class="rubric-main" style="background-image:url({{ $aquatiquemainArticle['image'] }}); background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
                     <div class="cthumb">
                         <div class="ph autres"></div>
                     </div>
                     <div class="rubric-main-copy">
-                        <span class="rubric-label">Sports aquatiques</span>
-                        <h3 class="ms-title">{{ $aquatiques['main_title'] }}</h3>
+                        @foreach($aquatiquemainArticle->categories as $category)
+                        <span class="rubric-label">{{ $category->nom }}</span>
+                        @endforeach
+                        <a class='lien' href="{{route('articles.show',$athletismemainArticle['slug'])}}"><h3 class="ms-title">{{ $aquatiquemainArticle['titre'] }}</h3></a>
                     </div>
                 </div>
                 <div class="rubric-side">
-                    @foreach($aquatiques['side'] ?? [] as $item)
+                    @foreach($aquatiquefeedItems ?? [] as $item)
                         <a class="rubric-side-card" href="{{ route('articles.show', $item['slug']) }}">
-                            <div class="rubric-side-thumb">
+                            <div class="rubric-side-thumb" style="background-image:url({{ $item['image'] }}); background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
                                 <div class="cthumb">
                                     <div class="ph autres"></div>
                                 </div>
                             </div>
                             <div>
-                                <div class="mini-tag">Sports aquatiques</div>
-                                <h4>{{ $item['title'] }}</h4>
+                            @foreach($item->categories as $category)  
+                                <div class="mini-tag">{{ $category->nom }}</div>
+                            @endforeach 
+                                <h4>{{ $item['titre'] }}</h4>
                             </div>
                         </a>
                     @endforeach
@@ -481,31 +549,7 @@
         </div>
     </section>
 
-    <!-- Gymnastique -->
-    <section class="rubric-block r-horse">
-        <div class="wrap">
-            <div class="home-rubric-head">
-                <h2>GYMNASTIQUE, FORCE & DISCIPLINES ARTISTIQUES</h2>
-                <a href="{{ route('sports.gymnastique') }}">Voir tout </a>
-            </div>
-            <div class="horse-layout">
-                <article class="horse-feature">
-                    <div>
-                        <div class="rubric-kicker" style="color:#e9c99e">{{ $gymnastique['feature_kicker'] ?? 'Gymnastique' }}</div>
-                        <h3 class="ms-title">{{ $gymnastique['feature_title'] }}</h3>
-                    </div>
-                </article>
-                <div class="horse-list">
-                    @foreach($gymnastique['items'] ?? [] as $item)
-                        <article class="horse-item">
-                            <div class="rubric-kicker">{{ $item['kicker'] }}</div>
-                            <h3>{{ $item['title'] }}</h3>
-                        </article>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Vidéos -->
     <section class="videosect">
@@ -542,14 +586,19 @@
                 <a href="{{ route('sports.precision') }}">Voir tout </a>
             </div>
             <div class="collage">
-                @foreach($precision as $item)
-                    <article class="g-card">
+                @foreach($precisionfeedItems as $item)
+                
+                    <article class="g-card" style="background-image:url({{ $item['image'] }}); background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
                         <div>
-                            <span class="ms-kicker" style="color:#fff">{{ $item['kicker'] }}</span>
-                            <h3 class="ms-title" style="color:#fff">{{ $item['title'] }}</h3>
-                            @if($item['description'] ?? false)
-                                <p class="ms-copy" style="color:#ddd">{{ $item['description'] }}</p>
-                            @endif
+                        <a class='lien' href="{{ route('articles.show', $item['slug']) }}">
+                             @foreach($item->categories as $category)
+                            <span class="ms-kicker" style="color:red">{{ $category->nom }}</span>
+                            @endforeach
+                            <h3 style="color:#fff">{{ $item['titre'] }}</h3>
+                        </a>
+                            
                         </div>
                     </article>
                 @endforeach
@@ -584,7 +633,7 @@
             </div>
             <div class="business-grid">
                 
-                <article class="business-card business-card--main" style="background-image:url({{ $buisnessmainArticle['image'] }}); background-size: cover;
+                <article class="business-card--main" style="background-image:url({{ $buisnessmainArticle['image'] }}); background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;" ;>
                     <div class="business-card__content">
@@ -661,9 +710,9 @@
     .ms-alaune .rail-card{display:grid;grid-template-columns:194px 1fr;gap:16px;align-items:center;text-decoration:none;color:#111;border-top:1px solid #ddd;padding-top:14px}
     .ms-alaune .rail-card img{width:194px;height:120px;object-fit:cover}
     .ms-wrap{width:min(1240px,calc(100% - 80px));margin:auto}
-    .ms-kicker{color:var(--rouge);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:13px}
+    .ms-kicker{color:var(--rouge);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
     .ms-copy{font-size:16px;line-height:1.5;color:#333;margin:8px 0 0}
-    .ms-title{font-size:22px;line-height:1.08;margin:9px 0 0;font-weight:900; color:white; }
+    .ms-title{font-size:25px;line-height:1.08;margin:9px 0 0;font-weight:900; color:white; }
     
     .ms-portraits{background:#050505;color:#fff;padding:54px 38px;margin-left:calc((100% - 100vw)/2);margin-right:calc((100% - 100vw)/2)}
     .ms-portraits .ms-wrap{width:min(1240px,calc(100% - 40px))}.ms-portraits .ms-head{border-color:#777}.ms-portraits .ms-head h2{font-size:55px;color:#fff}.ms-portraits .ms-head a{color:var(--rouge)}.ms-portrait-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:38px}.ms-person{padding:22px 18px;text-align:center;border-right:1px solid #777}.ms-person:last-child{border-right:0}.ms-person img{width:205px;height:205px;object-fit:cover;border-radius:45% 45% 45% 45%;display:block;margin:0 auto 18px}.ms-person .tag{color:var(--rouge);font-weight:900;font-size:20px}.ms-person h3{font-family:Georgia,serif;font-size:22px;line-height:1.15;margin:12px 0}.ms-person .name{color:#bbb;font-weight:900;letter-spacing:.04em;font-size:15px}
@@ -675,22 +724,30 @@
     
     .r-business{background:var(--papier);padding:58px 0;border-bottom:1px solid var(--ligne);}
     .business-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr;grid-template-rows:auto auto;gap:20px;}
-    .business-card--main{grid-row:1/3;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:34px;border-radius:12px;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px;position:relative;overflow:hidden;}
+    .business-card--main{grid-row:1/3;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:34px;border-radius:12px;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px;position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--ligne);transition:transform 0.2s ease,box-shadow 0.2s ease;}
     .business-card--main::after{content:"📈";position:absolute;right:20px;bottom:10px;font-size:72px;opacity:0.15;}
     .business-card--main .ms-title{color:white;font-size:px;margin-top:8px;}
     .business-card--main .business-card__excerpt{color:#b0b0c8;font-size:14px;line-height:1.6;margin-top:10px;max-width:90%;}
-    .business-card{background:#fff;padding:20px 22px;border-radius:12px;border:1px solid var(--ligne);display:flex;flex-direction:column;justify-content:flex-end;transition:transform 0.2s ease,box-shadow 0.2s ease;}
+    .business-card{background:#fff;padding:20px 22px;border-radius:12px;border:1px solid var(--ligne);display:flex;flex-direction:column;justify-content:flex-start;transition:transform 0.2s ease,box-shadow 0.2s ease;}
     .business-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06);}
     .business-card a{text-decoration:none;color:black}
-    .r-horse{background:var(--papier)}.horse-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px}.horse-feature{background:linear-gradient(135deg,#6d4325,#2c1b10);color:#fff;padding:34px;min-height:310px;display:flex;align-items:flex-end}.horse-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}.horse-item{background:#fff;padding:20px;border:1px solid #dfd0bf}
+    .r-horse{background:var(--papier); --rubric-height: 400px;}.horse-layout{display:grid;grid-template-columns:1fr 1fr;gap:15px}.horse-feature{height: var(--rubric-height);
+    background: linear-gradient(135deg,#6d4325,#2c1b10);
+    color: #fff;
+    padding: 34px;
+    display: flex;
+    align-items: flex-end;}.horse-list{ height: var(--rubric-height);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;}.horse-item{background:#fff;padding:20px;border:1px solid #dfd0bf;display:flex;flex-direction:column; justify-content:flex-end }.horse-item h3{color:white;font-size:15px}
     
     .r-dossiers{background:#f5f0e8}.dossier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.dossier-card{background:#14100e;color:#fff;padding:26px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between}.dossier-card:nth-child(2){background:#b8862f}.dossier-card:nth-child(3){background:#c81d25}.dossier-card small{text-transform:uppercase;letter-spacing:1px;font-weight:800}
     
-    .r-meca{background:#0c0c0c;color:#fff}.r-meca .rubric-head{border-color:#333}.meca-grid{display:grid;grid-template-columns:1.6fr .8fr .8fr;gap:12px}.meca-card{min-height:250px;padding:24px;display:flex;align-items:flex-end;background:linear-gradient(135deg,#202020,#111);border:1px solid #333}.meca-card:first-child{min-height:360px;background:linear-gradient(135deg,#b22a22,#211)}.meca-card small{color:#aaa;display:block;margin-bottom:6px}
+    .r-meca{background:#0c0c0c;color:#fff}.r-meca .rubric-head{border-color:#333}.meca-grid{display:grid;grid-template-columns:1.4fr .9fr .9fr;gap:12px}.meca-card{min-height:250px;padding:24px;display:flex;align-items:flex-end;background:linear-gradient(135deg,#202020,#111);border:1px solid #333}.meca-card:first-child{min-height:360px;background:linear-gradient(135deg,#b22a22,#211)}.meca-card small{color:red;font-weight:bold; display:block;margin-bottom:6px}.meca-card h3{font-size:18px}
     
     .r-univers{background:var(--papier)}.univ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.univ-card{padding:22px;background:#fff;border-radius:4px;border-bottom:5px solid #5c3d7a;min-height:190px}.univ-card:nth-child(2){border-color:#c81d25}.univ-card:nth-child(3){border-color:#0f6e56}.univ-card:nth-child(4){border-color:#b8862f}.univ-card h3{font-family:Anton;font-size:24px;margin-top:36px}
     
-    .ms-glisse .collage{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:180px 180px;gap:12px}.ms-glisse .g-card{padding:24px;display:flex;align-items:end;color:#fff;background:linear-gradient(145deg,#173b31,#0c0c0c);position:relative;overflow:hidden}.ms-glisse .g-card:first-child{grid-row:1/3;background:linear-gradient(145deg,#7b251d,#111)}.ms-glisse .g-card:nth-child(2){background:linear-gradient(145deg,#3d5e17,#111)}.ms-glisse .g-card:nth-child(3){background:linear-gradient(145deg,#24516a,#111)}
+    .ms-glisse .collage{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:180px 180px;gap:12px}.ms-glisse .g-card{padding:20px;display:flex;align-items:end;color:black;background:linear-gradient(145deg,#173b31,#0c0c0c);position:relative;overflow:hidden}.ms-glisse .g-card:first-child{grid-row:1/3;background:linear-gradient(145deg,#7b251d,#111);font-size:22px}.ms-glisse .g-card:nth-child(2){background:linear-gradient(145deg,#3d5e17,#111);font-size:13px}.ms-glisse .g-card:nth-child(3){background:linear-gradient(145deg,#24516a,#111);font-size:13px}  .g-card:nth-child(4){background:linear-gradient(145deg,#24516a,#111);font-size:13px}
     
     .rubric-block{padding:58px 0;border-bottom:1px solid #e6e2dc;}
     .football-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:24px}.sport-feature{min-height:360px;padding:28px;display:flex;align-items:flex-end;background:linear-gradient(135deg,#17492e,#0b2418);position:relative;overflow:hidden}.sport-feature::before{content:'FOOTBALL';position:absolute;right:-25px;top:10px;font-size:100px;opacity:.08}.sport-feature h3{font-size:38px;line-height:1.05;color:white}.sport-side{display:grid;gap:14px}.sport-story{padding:18px;background:#1d1a17;border-left:4px solid #c81d25}.sport-story span{font-size:10px;color:#ff4b4b;font-weight:800;text-transform:uppercase}.sport-story h4{font-size:16px;margin-top:7px;color:white}

@@ -7,7 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 
 
-class macaniqueController extends Controller
+class mecaniqueController extends Controller
 
 {
     public function index()

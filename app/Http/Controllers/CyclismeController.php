@@ -7,13 +7,13 @@ use App\Models\Article;
 use App\Models\Category;
 
 
-class cyclismeController extends Controller
+class CyclismeController extends Controller
 
 {
     public function index()
     {
         // Données pour l'article principal
-       $category = Category::with('articles')->find(4);
+       $category = Category::with('articles')->find(7);
        $article = $category->articles;
        $mainArticle = $article->sortByDesc('datedecreation')
        ->first();
