@@ -190,11 +190,11 @@
         </div>-->
         
         <div class="mn-dropdown">
-            <a href="{{ route('football') }}" class="mn {{ request()->routeIs('football*') ? 'active' : '' }}">Football</a>
+            <a href="{{ route('sports.football') }}" class="mn {{ request()->routeIs('football*') ? 'active' : '' }}">Football</a>
         </div>
         
         <div class="mn-dropdown">
-            <a href="{{ route('basketball') }}" class="mn {{ request()->routeIs('basketball*') ? 'active' : '' }}">Basketball</a>
+            <a href="{{ route('sports.basketball') }}" class="mn {{ request()->routeIs('basketball*') ? 'active' : '' }}">Basketball</a>
         </div>
         
         <div class="mn-dropdown">

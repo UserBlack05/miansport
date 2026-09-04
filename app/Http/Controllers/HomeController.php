@@ -108,7 +108,6 @@ class HomeController extends Controller
        $portraitfeedItems = $articles->sortByDesc('datedecreation')
         ->take(4);
 
-
         $category = Category::with('children.articles')->find(20);
        $articles = $category->children
        ->flatMap->articles;
