@@ -119,7 +119,7 @@ Route::prefix('videos')->group(function () {
 
 Route::get('/actualites', [ActuController::class, 'index'])->name('actu');
 
-Route::get('/buisness', [buisnessController::class, 'index'])->name('buisness');
+Route::get('/buisness', [BuisnessController::class, 'index'])->name('buisness');
 
 Route::get('/sports/collectifs', [AutresSportsCollectifsController::class, 'index'])->name('sports.collectifs');
 
