@@ -8,8 +8,8 @@
             <div class="fcol">
                 <h4>Liens utiles</h4>
                 <a href="{{ route('home') }}">Accueil</a>
-                <a href="{{ route('football') }}">Football</a>
-                <a href="{{ route('basketball') }}">Basketball</a>
+                <a href="{{ route('sports.football') }}">Football</a>
+                <a href="{{ route('sports.Basketball') }}">Basketball</a>
                 <a href="{{ route('videos') }}">Vidéos</a>
                 <a href="{{ route('magazine') }}">Magazines</a>
                 <a href="#">À propos</a>

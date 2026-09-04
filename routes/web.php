@@ -35,7 +35,7 @@ Route::prefix('actualites')->group(function () {
 
 // Football
 Route::prefix('football')->group(function () {
-    Route::get('/', function () { return view('football.index'); })->name('football');
+ 
     Route::get('/cote-ivoire', function () { return view('football.ivoire'); })->name('football.ivoire');
     Route::get('/afrique', function () { return view('football.afrique'); })->name('football.afrique');
     Route::get('/international', function () { return view('football.international'); })->name('football.international');
@@ -46,7 +46,7 @@ Route::prefix('football')->group(function () {
 
 // Basketball
 Route::prefix('basketball')->group(function () {
-    Route::get('/', function () { return view('basketball.index'); })->name('basketball');
+    
     Route::get('/cote-ivoire', function () { return view('basketball.ivoire'); })->name('basketball.ivoire');
     Route::get('/afrique', function () { return view('basketball.afrique'); })->name('basketball.afrique');
     Route::get('/international', function () { return view('basketball.international'); })->name('basketball.international');

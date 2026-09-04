@@ -5,7 +5,7 @@
 @section('content')
     
     <div class="category-hero">
-        <h1 class="display">SPORT & BUISNESS</h1>
+        <h1 class="display">SPORT & BUSINESS</h1>
         <p>{{ $category->description ?? "L'économie du sport, les investissements, les mutations des clubs, les droits médias et les carrières." }}</p>
     </div>
 

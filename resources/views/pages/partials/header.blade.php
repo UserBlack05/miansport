@@ -194,7 +194,7 @@
         </div>
         
         <div class="mn-dropdown">
-            <a href="{{ route('sports.basketball') }}" class="mn {{ request()->routeIs('basketball*') ? 'active' : '' }}">Basketball</a>
+            <a href="{{ route('sports.Basketball') }}" class="mn {{ request()->routeIs('basketball*') ? 'active' : '' }}">Basketball</a>
         </div>
         
         <div class="mn-dropdown">
